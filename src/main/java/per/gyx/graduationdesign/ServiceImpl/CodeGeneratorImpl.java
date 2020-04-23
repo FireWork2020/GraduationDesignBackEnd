@@ -20,7 +20,7 @@ public class CodeGeneratorImpl implements CodeGenerator {
          ArrayList<String> list = new ArrayList<>();
          Long time = System.currentTimeMillis();
          for(int i = 1;i <= n;i++){
-             list.add(time + "");
+             list.add(time / 10 * i + "");
          }
          return list;
     }

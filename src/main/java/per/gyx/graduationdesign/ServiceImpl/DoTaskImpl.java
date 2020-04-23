@@ -21,8 +21,7 @@ public class DoTaskImpl implements DoTask {
 
     @Override
     public boolean storeCollectHistory(Task task) {
-        System.out.println("回收码"+task.getCollectcode());//到此正常
-        redisUtils.deleteListLeft();
+        System.out.println("准备插入的任务"+task.getCollectcode());
         return taskMapper.insert(task) > 0;
     }
 }

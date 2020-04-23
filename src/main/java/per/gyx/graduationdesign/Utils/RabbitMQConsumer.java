@@ -10,8 +10,10 @@ import per.gyx.graduationdesign.Service.DoTask;
 import per.gyx.graduationdesign.ServiceImpl.DoTaskImpl;
 import per.gyx.graduationdesign.entity.Task;
 
+import java.nio.channels.Channel;
+
 @Component
-@RabbitListener(queues = "task")
+
 public class RabbitMQConsumer {
 
     @Autowired
@@ -20,9 +22,16 @@ public class RabbitMQConsumer {
     @Autowired
     private DoTask doTask;
 
-    @RabbitHandler
-    public void receive(byte[] taskBytes){
+    @Autowired
+    private RedisUtils redisUtils;
 
-        doTask.storeCollectHistory(SerializeObject.deSerialize(taskBytes));
+    @RabbitHandler
+    @RabbitListener(queues = "task")
+    public void receive(byte[] taskBytes){
+        Task task = SerializeObject.deSerialize(taskBytes);
+        System.out.println("接收到的消息为:"+task.getCollectcode());
+        redisUtils.deleteListLeft();
+
+        doTask.storeCollectHistory(task);
     }
 }
