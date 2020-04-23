@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="per.gyx.graduationdesign.dao.TaskMapper">
+  <resultMap id="BaseResultMap" type="per.gyx.graduationdesign.entity.Task">
+    <result column="UserName" jdbcType="VARCHAR" property="username" />
+    <result column="Type" jdbcType="INTEGER" property="type" />
+    <result column="CollectCode" jdbcType="VARCHAR" property="collectcode" />
+    <result column="Date" jdbcType="VARCHAR" property="date" />
+  </resultMap>
+  <insert id="insert" parameterType="per.gyx.graduationdesign.entity.Task">
+    insert into TaskHistory (UserName, Type, CollectCode, 
+      Date)
+    values (#{username,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{collectcode,jdbcType=VARCHAR}, 
+      #{date,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="per.gyx.graduationdesign.entity.Task">
+    insert into TaskHistory
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        UserName,
+      </if>
+      <if test="type != null">
+        Type,
+      </if>
+      <if test="collectcode != null">
+        CollectCode,
+      </if>
+      <if test="date != null">
+        Date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="collectcode != null">
+        #{collectcode,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>

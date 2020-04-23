@@ -14,10 +14,4 @@ public class RabbitMQTest {
     @Autowired
     private RabbitMQConsumer consumer;
 
-    @Test
-    public void testStringSend(){
-        for(int i = 0;i < 10;i++){
-            producer.stringSend();
-        }
-    }
 }

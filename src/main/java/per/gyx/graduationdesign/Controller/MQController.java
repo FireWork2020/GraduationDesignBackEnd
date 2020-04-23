@@ -12,7 +12,6 @@ public class MQController {
 
     @GetMapping("/")
     public List<String> getMQ(){
-
         return null;
     }
 }
