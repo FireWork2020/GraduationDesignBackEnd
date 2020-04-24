@@ -1,6 +1,8 @@
 package per.gyx.graduationdesign.config;
 
+import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.amqp.*;
@@ -13,4 +15,6 @@ public class RabbitMQConfig {
     public Queue string(){
         return new Queue(queueName);
     }
+
+
 }

@@ -11,6 +11,7 @@ import per.gyx.graduationdesign.ServiceImpl.DoTaskImpl;
 import per.gyx.graduationdesign.entity.Task;
 
 import java.nio.channels.Channel;
+import java.util.concurrent.locks.ReentrantLock;
 
 @Component
 
@@ -26,12 +27,23 @@ public class RabbitMQConsumer {
     private RedisUtils redisUtils;
 
     @RabbitHandler
-    @RabbitListener(queues = "task")
-    public void receive(byte[] taskBytes){
-        Task task = SerializeObject.deSerialize(taskBytes);
-        System.out.println("接收到的消息为:"+task.getCollectcode());
+    @RabbitListener(queues = "test")
+    public void receive2(Task task){
+        System.out.println("RabbitMQConsumer: "+task.toString());
         redisUtils.deleteListLeft();
-
-        doTask.storeCollectHistory(task);
+        ReentrantLock
     }
+    @RabbitHandler
+    @RabbitListener(queues = "task")
+    public void receive(Task task){
+//        System.out.println(taskBytes.toString());
+//        Task task = SerializeObject.deSerialize(taskBytes);
+//        System.out.println("接收到的消息为:"+task.getCollectcode());
+//        redisUtils.deleteListLeft();
+//        doTask.storeCollectHistory(task);
+        //System.out.println(task.toString());
+        //redisUtils.deleteListLeft();
+    }
+
+
 }

@@ -28,6 +28,8 @@ public class SerializeObject{
             ObjectOutputStream oos = OOSHolder.getOos();
             oos.writeObject(task);
             byte[] b = baos.toByteArray();
+            baos.close();
+            oos.close();
             return b;
         }catch (IOException e){
             e.printStackTrace();
@@ -39,7 +41,11 @@ public class SerializeObject{
         try{
             bais = new ByteArrayInputStream(b);
             ObjectInputStream ois = new ObjectInputStream(bais);
-            return (Task)ois.readObject();
+            bais.close();
+            ois.close();
+            Task task = (Task)ois.readObject();
+            System.out.println("deSerialize task:"+task.getCollectcode());
+            return task;
         }catch (IOException | ClassNotFoundException e1){
             e1.printStackTrace();
         }

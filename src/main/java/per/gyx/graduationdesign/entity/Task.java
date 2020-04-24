@@ -13,6 +13,11 @@ public class Task implements java.io.Serializable{
         return username;
     }
 
+    @Override
+    public String toString() {
+        return "UserName:"+username+"  type:" + type + "  collectCode:" + collectcode + "  date:"+ date;
+    }
+
     public void setUsername(String username) {
         this.username = username == null ? null : username.trim();
     }

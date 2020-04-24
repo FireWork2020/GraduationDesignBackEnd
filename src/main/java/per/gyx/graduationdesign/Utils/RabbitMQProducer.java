@@ -14,15 +14,22 @@ public class RabbitMQProducer {
 
     @Autowired
     private AmqpTemplate rabbitTemplate;
+    @Autowired
+    private RedisUtils redisUtils;
 
+    public void testTaskSend(Task task){
+        rabbitTemplate.convertAndSend("test",task);
+    }
     public void taskSend(Task task) {
-        try{
-            System.out.println("生产者："+task.getCollectcode());
-            byte[] taskBytes = SerializeObject.serialize(task);
-            this.rabbitTemplate.convertAndSend("task",taskBytes);
-        }catch (IOException e){
+        System.out.println("生产者："+task.getCollectcode());
+        byte[] taskBytes = new byte[0];
+        try {
+            taskBytes = SerializeObject.serialize(task);
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        this.rabbitTemplate.convertAndSend("task",taskBytes);
+
 
     }
 }

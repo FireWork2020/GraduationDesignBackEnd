@@ -31,7 +31,9 @@ public class DoThrow {
         Date date = new Date();
         String dataString = new SimpleDateFormat("yyyy-MM-dd").format(date);
         task.setDate(dataString);
-        rabbitMQProducer.taskSend(task);
+        System.out.println(task.toString());
+        //rabbitMQProducer.taskSend(task);
+        rabbitMQProducer.testTaskSend(task);
         return true;
     }
 }

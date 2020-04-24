@@ -21,7 +21,6 @@ public class DoTaskImpl implements DoTask {
 
     @Override
     public boolean storeCollectHistory(Task task) {
-        System.out.println("准备插入的任务"+task.getCollectcode());
         return taskMapper.insert(task) > 0;
     }
 }
