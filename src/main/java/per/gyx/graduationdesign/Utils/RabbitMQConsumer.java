@@ -31,7 +31,6 @@ public class RabbitMQConsumer {
     public void receive2(Task task){
         System.out.println("RabbitMQConsumer: "+task.toString());
         redisUtils.deleteListLeft();
-        ReentrantLock
     }
     @RabbitHandler
     @RabbitListener(queues = "task")
