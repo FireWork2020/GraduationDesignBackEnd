@@ -30,7 +30,8 @@ public void after() throws Exception {
 @Test
 public void testGenerateQRCodePic() throws Exception { 
 //TODO: Test goes here...
-    QRCodeGenerator.generateQRCodePic("123456",300,300,"png");
+    //QRCodeGenerator.generateQRCodePic("123456",300,300,"png");
+    QRCodeGenerator.deleteQRCodePic("second.png");
 } 
 
 

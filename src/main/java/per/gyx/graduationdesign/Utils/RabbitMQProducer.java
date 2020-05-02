@@ -21,15 +21,6 @@ public class RabbitMQProducer {
         rabbitTemplate.convertAndSend("test",task);
     }
     public void taskSend(Task task) {
-        System.out.println("生产者："+task.getCollectcode());
-        byte[] taskBytes = new byte[0];
-        try {
-            taskBytes = SerializeObject.serialize(task);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        this.rabbitTemplate.convertAndSend("task",taskBytes);
-
-
+        rabbitTemplate.convertAndSend("task",task);
     }
 }

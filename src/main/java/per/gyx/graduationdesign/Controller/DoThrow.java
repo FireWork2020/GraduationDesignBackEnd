@@ -21,9 +21,6 @@ public class DoThrow {
 
     @RequestMapping("/submitTask")
     public boolean submitTask(@RequestParam(name="userName") String userName,@RequestParam(name="type") String type,@RequestParam(name="collectCode") String collectCode){
-        System.out.println(userName);
-        System.out.println(type);
-        System.out.println(collectCode);
         Task task = new Task();
         task.setUsername(userName);
         task.setType(Integer.parseInt(type));
@@ -31,9 +28,7 @@ public class DoThrow {
         Date date = new Date();
         String dataString = new SimpleDateFormat("yyyy-MM-dd").format(date);
         task.setDate(dataString);
-        System.out.println(task.toString());
-        //rabbitMQProducer.taskSend(task);
-        rabbitMQProducer.testTaskSend(task);
+        rabbitMQProducer.taskSend(task);
         return true;
     }
 }

@@ -64,17 +64,26 @@ public class RedisUtils {
     }
     public boolean deleteListLeft(){
         List<String> list = redisTemplate.opsForList().range("CollectCode",0,-1);
+        redisTemplate.opsForList().leftPop("CollectCode");
+        list = redisTemplate.opsForList().range("CollectCode",0,-1);
+        return true;
+    }
+    public boolean deleteCodeFromList(String code){
+        List<String> list = redisTemplate.opsForList().range("CollectCode",0,-1);
         System.out.println("删除前");
         for(String temp:list){
             System.out.println(temp);
         }
-        redisTemplate.opsForList().leftPop("CollectCode");
+        redisTemplate.opsForList().remove("CollectCode",1,code);
         list = redisTemplate.opsForList().range("CollectCode",0,-1);
         System.out.println("删除后");
         for(String temp:list){
             System.out.println(temp);
         }
         return true;
+    }
+    public void deleteList(String listName){
+        redisTemplate.delete(listName);
     }
 
 }

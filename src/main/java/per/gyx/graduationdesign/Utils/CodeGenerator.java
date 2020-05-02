@@ -1,26 +1,26 @@
-package per.gyx.graduationdesign.ServiceImpl;
+package per.gyx.graduationdesign.Utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import per.gyx.graduationdesign.Service.CodeGenerator;
+import per.gyx.graduationdesign.Utils.QRCodeGenerator;
 import per.gyx.graduationdesign.Utils.RedisUtils;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 @Service
-public class CodeGeneratorImpl implements CodeGenerator {
+public class CodeGenerator {
 
     @Autowired
     private RedisUtils redisUtils;
 
-    @Override
-    public List<String> generateCode(int n) {
+    public static List<String> generateCode(int n) {
          ArrayList<String> list = new ArrayList<>();
          Long time = System.currentTimeMillis();
          for(int i = 1;i <= n;i++){
-             list.add(time / 10 * i + "");
+             String code = time / 10 * i + "";
+             list.add(code);
+             QRCodeGenerator.generateQRCodePic(code);
          }
          return list;
     }
