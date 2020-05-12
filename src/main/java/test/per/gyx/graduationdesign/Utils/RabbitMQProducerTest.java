@@ -3,7 +3,6 @@ package test.per.gyx.graduationdesign.Utils;
 import org.junit.Test; 
 import org.junit.Before; 
 import org.junit.After;
-import org.springframework.beans.factory.annotation.Autowired;
 import per.gyx.graduationdesign.Utils.RabbitMQProducer;
 import per.gyx.graduationdesign.entity.Task;
 

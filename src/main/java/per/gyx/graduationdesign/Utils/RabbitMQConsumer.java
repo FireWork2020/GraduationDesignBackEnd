@@ -8,7 +8,6 @@ import per.gyx.graduationdesign.Service.DoTask;
 import per.gyx.graduationdesign.entity.Task;
 
 
-
 @Component
 
 public class RabbitMQConsumer {

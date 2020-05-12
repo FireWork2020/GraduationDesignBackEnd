@@ -7,9 +7,6 @@ import per.gyx.graduationdesign.Utils.RedisUtils;
 import per.gyx.graduationdesign.dao.TaskMapper;
 import per.gyx.graduationdesign.entity.Task;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-
 @Service
 public class DoTaskImpl implements DoTask {
 
