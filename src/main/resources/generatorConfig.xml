@@ -41,8 +41,24 @@
 <!--               selectByExampleQueryId="false">-->
 
 <!--        </table>-->
-        <table tableName="TaskHistory"
-               domainObjectName="Task"
+<!--        <table tableName="TaskHistory"-->
+<!--               domainObjectName="Task"-->
+<!--               enableCountByExample="false"-->
+<!--               enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false"-->
+<!--               enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--        </table>-->
+        <table tableName="Question"
+               domainObjectName="Question"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
+        <table tableName="Notice"
+               domainObjectName="Notice"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"

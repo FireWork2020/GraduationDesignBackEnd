@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import per.gyx.graduationdesign.Service.GetMessage;
 import per.gyx.graduationdesign.Utils.CodeGenerator;
 import per.gyx.graduationdesign.Utils.RedisUtils;
+import per.gyx.graduationdesign.entity.Notice;
+import per.gyx.graduationdesign.entity.Question;
 import per.gyx.graduationdesign.entity.Task;
 
 import java.util.ArrayList;
@@ -19,6 +21,16 @@ public class GetMessageController {
     @Autowired
     private GetMessage getMessage;
 
+    @GetMapping("/getNotice")
+    @ResponseBody
+    public List<Notice> getNotice(){
+        return getMessage.getNotice();
+    }
+    @GetMapping("/getQues&Ans")
+    @ResponseBody
+    public List<Question> getQuesAndAns(@RequestParam("userName")String userName){
+        return getMessage.getQuesAndAns(userName);
+    }
     @GetMapping("/integrateHistory")
     @ResponseBody
     public List<Integer> getIntegrateHistory(@RequestParam("userName") String userName){
