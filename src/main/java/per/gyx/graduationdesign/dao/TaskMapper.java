@@ -1,17 +1,17 @@
 package per.gyx.graduationdesign.dao;
 
-import java.util.List;
 import per.gyx.graduationdesign.entity.Task;
-import per.gyx.graduationdesign.entity.TaskExample;
 
 public interface TaskMapper {
+    int deleteByPrimaryKey(String collectcode);
+
     int insert(Task record);
 
     int insertSelective(Task record);
 
-    List<Task> selectByExample(TaskExample example);
+    Task selectByPrimaryKey(String collectcode);
 
-    List<Task> selectByUserName(String userName);
+    int updateByPrimaryKeySelective(Task record);
 
-    List<Integer> selectUnCheckedByUserName(String userName);
+    int updateByPrimaryKey(Task record);
 }

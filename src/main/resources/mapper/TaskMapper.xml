@@ -2,103 +2,92 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="per.gyx.graduationdesign.dao.TaskMapper">
   <resultMap id="BaseResultMap" type="per.gyx.graduationdesign.entity.Task">
+    <id column="CollectCode" jdbcType="VARCHAR" property="collectcode" />
     <result column="UserName" jdbcType="VARCHAR" property="username" />
     <result column="Type" jdbcType="INTEGER" property="type" />
-    <result column="CollectCode" jdbcType="VARCHAR" property="collectcode" />
     <result column="Date" jdbcType="VARCHAR" property="date" />
+    <result column="Checked" jdbcType="INTEGER" property="checked" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
-    UserName, Type, CollectCode, Date
+    CollectCode, UserName, Type, Date, Checked
   </sql>
-  <select id="selectByExample" parameterType="per.gyx.graduationdesign.entity.TaskExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    'true' as QUERYID,
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
     <include refid="Base_Column_List" />
     from TaskHistory
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
+    where CollectCode = #{collectcode,jdbcType=VARCHAR}
   </select>
-    <select id="selectByUserName" resultType="per.gyx.graduationdesign.entity.Task">
-        select *
-        from TaskHistory
-        where UserName = #{userName,jdbcType=VARCHAR}
-    </select>
-    <select id="selectUnCheckedByUserName" resultType="java.lang.Integer">
-        select type
-        from TaskHistory
-        where checked = 0 and UserName = #{userName,jdbcType=VARCHAR}
-    </select>
-    <insert id="insert" parameterType="per.gyx.graduationdesign.entity.Task">
-    insert into TaskHistory (UserName, Type, CollectCode, 
-      Date)
-    values (#{username,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{collectcode,jdbcType=VARCHAR}, 
-      #{date,jdbcType=VARCHAR})
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TaskHistory
+    where CollectCode = #{collectcode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="per.gyx.graduationdesign.entity.Task">
+    insert into TaskHistory (CollectCode, UserName, Type, 
+      Date, Checked)
+    values (#{collectcode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{date,jdbcType=VARCHAR}, #{checked,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="per.gyx.graduationdesign.entity.Task">
     insert into TaskHistory
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="collectcode != null">
+        CollectCode,
+      </if>
       <if test="username != null">
         UserName,
       </if>
       <if test="type != null">
         Type,
       </if>
-      <if test="collectcode != null">
-        CollectCode,
-      </if>
       <if test="date != null">
         Date,
       </if>
+      <if test="checked != null">
+        Checked,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="collectcode != null">
+        #{collectcode,jdbcType=VARCHAR},
+      </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
       </if>
-      <if test="collectcode != null">
-        #{collectcode,jdbcType=VARCHAR},
-      </if>
       <if test="date != null">
         #{date,jdbcType=VARCHAR},
       </if>
+      <if test="checked != null">
+        #{checked,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="per.gyx.graduationdesign.entity.Task">
+    update TaskHistory
+    <set>
+      <if test="username != null">
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        Type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        Date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="checked != null">
+        Checked = #{checked,jdbcType=INTEGER},
+      </if>
+    </set>
+    where CollectCode = #{collectcode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="per.gyx.graduationdesign.entity.Task">
+    update TaskHistory
+    set UserName = #{username,jdbcType=VARCHAR},
+      Type = #{type,jdbcType=INTEGER},
+      Date = #{date,jdbcType=VARCHAR},
+      Checked = #{checked,jdbcType=INTEGER}
+    where CollectCode = #{collectcode,jdbcType=VARCHAR}
+  </update>
 </mapper>

@@ -2,72 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="per.gyx.graduationdesign.dao.QuestionMapper">
   <resultMap id="BaseResultMap" type="per.gyx.graduationdesign.entity.Question">
+    <id column="ID" jdbcType="INTEGER" property="id" />
     <result column="UserName" jdbcType="VARCHAR" property="username" />
     <result column="Topic" jdbcType="VARCHAR" property="topic" />
     <result column="Msg" jdbcType="VARCHAR" property="msg" />
     <result column="Ans" jdbcType="VARCHAR" property="ans" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
-    UserName, Topic, Msg, Ans
+    ID, UserName, Topic, Msg, Ans
   </sql>
-  <select id="selectByUserName" resultType="per.gyx.graduationdesign.entity.Question">
-        select *
-        from Question
-        where UserName = #{userName,jdbcType=VARCHAR}
-    </select>
-  <select id="selectByExample" parameterType="per.gyx.graduationdesign.entity.QuestionExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    'true' as QUERYID,
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
     <include refid="Base_Column_List" />
     from Question
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
+    where ID = #{id,jdbcType=INTEGER}
   </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from Question
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
   <insert id="insert" parameterType="per.gyx.graduationdesign.entity.Question">
-    insert into Question (UserName, Topic, Msg, 
-      Ans)
-    values (#{username,jdbcType=VARCHAR}, #{topic,jdbcType=VARCHAR}, #{msg,jdbcType=VARCHAR}, 
-      #{ans,jdbcType=VARCHAR})
+    insert into Question (ID, UserName, Topic, 
+      Msg, Ans)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{topic,jdbcType=VARCHAR}, 
+      #{msg,jdbcType=VARCHAR}, #{ans,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="per.gyx.graduationdesign.entity.Question">
     insert into Question
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
       <if test="username != null">
         UserName,
       </if>
@@ -82,6 +47,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
       </if>
@@ -96,4 +64,30 @@
       </if>
     </trim>
   </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="per.gyx.graduationdesign.entity.Question">
+    update Question
+    <set>
+      <if test="username != null">
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="topic != null">
+        Topic = #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="msg != null">
+        Msg = #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="ans != null">
+        Ans = #{ans,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="per.gyx.graduationdesign.entity.Question">
+    update Question
+    set UserName = #{username,jdbcType=VARCHAR},
+      Topic = #{topic,jdbcType=VARCHAR},
+      Msg = #{msg,jdbcType=VARCHAR},
+      Ans = #{ans,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

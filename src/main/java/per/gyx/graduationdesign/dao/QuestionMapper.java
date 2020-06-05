@@ -1,15 +1,18 @@
 package per.gyx.graduationdesign.dao;
 
-import java.util.List;
 import per.gyx.graduationdesign.entity.Question;
-import per.gyx.graduationdesign.entity.QuestionExample;
 
 public interface QuestionMapper {
+    int deleteByPrimaryKey(Integer id);
+
     int insert(Question record);
 
     int insertSelective(Question record);
 
-    List<Question> selectByExample(QuestionExample example);
+    Question selectByPrimaryKey(Integer id);
 
-    List<Question> selectByUserName(String userName);
+
+    int updateByPrimaryKeySelective(Question record);
+
+    int updateByPrimaryKey(Question record);
 }

@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
 import per.gyx.graduationdesign.Utils.RabbitMQProducer;
-import per.gyx.graduationdesign.entity.Task;
 
 /** 
 * RabbitMQProducer Tester. 

@@ -1,15 +1,23 @@
 package per.gyx.graduationdesign.entity;
 
-import java.io.Serializable;
+public class Task {
+    private String collectcode;
 
-public class Task implements Serializable {
     private String username;
 
     private Integer type;
 
-    private String collectcode;
-
     private String date;
+
+    private Integer checked;
+
+    public String getCollectcode() {
+        return collectcode;
+    }
+
+    public void setCollectcode(String collectcode) {
+        this.collectcode = collectcode == null ? null : collectcode.trim();
+    }
 
     public String getUsername() {
         return username;
@@ -27,19 +35,19 @@ public class Task implements Serializable {
         this.type = type;
     }
 
-    public String getCollectcode() {
-        return collectcode;
-    }
-
-    public void setCollectcode(String collectcode) {
-        this.collectcode = collectcode == null ? null : collectcode.trim();
-    }
-
     public String getDate() {
         return date;
     }
 
     public void setDate(String date) {
         this.date = date == null ? null : date.trim();
+    }
+
+    public Integer getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Integer checked) {
+        this.checked = checked;
     }
 }

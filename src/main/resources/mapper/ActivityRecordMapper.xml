@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="per.gyx.graduationdesign.dao.ActivityRecordMapper">
+  <resultMap id="BaseResultMap" type="per.gyx.graduationdesign.entity.ActivityRecord">
+    <result column="activityNum" jdbcType="INTEGER" property="activitynum" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+  </resultMap>
+  <insert id="insert" parameterType="per.gyx.graduationdesign.entity.ActivityRecord">
+    insert into ActivityList (activityNum, userName)
+    values (#{activitynum,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="per.gyx.graduationdesign.entity.ActivityRecord">
+    insert into ActivityList
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="activitynum != null">
+        activityNum,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="activitynum != null">
+        #{activitynum,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

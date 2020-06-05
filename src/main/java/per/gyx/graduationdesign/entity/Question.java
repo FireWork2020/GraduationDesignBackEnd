@@ -1,6 +1,8 @@
 package per.gyx.graduationdesign.entity;
 
 public class Question {
+    private Integer id;
+
     private String username;
 
     private String topic;
@@ -8,6 +10,14 @@ public class Question {
     private String msg;
 
     private String ans;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;

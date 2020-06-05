@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="per.gyx.graduationdesign.dao.ActivityMapper">
+  <resultMap id="BaseResultMap" type="per.gyx.graduationdesign.entity.Activity">
+    <id column="activityNum" jdbcType="INTEGER" property="activitynum" />
+    <result column="topic" jdbcType="VARCHAR" property="topic" />
+    <result column="msg" jdbcType="VARCHAR" property="msg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    activityNum, topic, msg
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from Activity
+    where activityNum = #{activitynum,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from Activity
+    where activityNum = #{activitynum,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="per.gyx.graduationdesign.entity.Activity">
+    insert into Activity (activityNum, topic, msg
+      )
+    values (#{activitynum,jdbcType=INTEGER}, #{topic,jdbcType=VARCHAR}, #{msg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="per.gyx.graduationdesign.entity.Activity">
+    insert into Activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="activitynum != null">
+        activityNum,
+      </if>
+      <if test="topic != null">
+        topic,
+      </if>
+      <if test="msg != null">
+        msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="activitynum != null">
+        #{activitynum,jdbcType=INTEGER},
+      </if>
+      <if test="topic != null">
+        #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="msg != null">
+        #{msg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="per.gyx.graduationdesign.entity.Activity">
+    update Activity
+    <set>
+      <if test="topic != null">
+        topic = #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="msg != null">
+        msg = #{msg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where activityNum = #{activitynum,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="per.gyx.graduationdesign.entity.Activity">
+    update Activity
+    set topic = #{topic,jdbcType=VARCHAR},
+      msg = #{msg,jdbcType=VARCHAR}
+    where activityNum = #{activitynum,jdbcType=INTEGER}
+  </update>
+</mapper>
