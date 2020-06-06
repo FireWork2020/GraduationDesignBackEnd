@@ -17,7 +17,16 @@
     from Question
     where ID = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectByUserName" resultType="per.gyx.graduationdesign.entity.Question">
+      select *
+      from Question
+      where username=#{userName,jdbcType=VARCHAR}
+    </select>
+    <select id="selectAll" resultType="per.gyx.graduationdesign.entity.Question">
+      select *
+      from Question
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from Question
     where ID = #{id,jdbcType=INTEGER}
   </delete>
@@ -89,5 +98,10 @@
       Msg = #{msg,jdbcType=VARCHAR},
       Ans = #{ans,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateAnsById">
+    update Question
+    set Ans=#{ans}
+    where ID=#{id}
   </update>
 </mapper>

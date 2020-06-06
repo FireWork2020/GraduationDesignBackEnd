@@ -79,4 +79,8 @@
       </if>
     </trim>
   </insert>
+    <insert id="insertNotice" parameterType="per.gyx.graduationdesign.entity.Notice">
+      insert into Notice(Topic,Msg)
+      values (#{topic,jdbcType=VARCHAR},#{msg,jdbcType=VARCHAR})
+    </insert>
 </mapper>

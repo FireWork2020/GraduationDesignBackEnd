@@ -1,21 +1,20 @@
 package per.gyx.graduationdesign.dao;
 
 import per.gyx.graduationdesign.entity.User;
-import per.gyx.graduationdesign.entity.UserKey;
-import per.gyx.graduationdesign.entity.UserWithBLOBs;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(UserKey key);
+    int deleteByPrimaryKey(String username);
 
-    int insert(UserWithBLOBs record);
+    int insert(User record);
 
-    int insertSelective(UserWithBLOBs record);
+    int insertSelective(User record);
 
-    UserWithBLOBs selectByPrimaryKey(UserKey key);
+    User selectByPrimaryKey(String username);
 
-    int updateByPrimaryKeySelective(UserWithBLOBs record);
-
-    int updateByPrimaryKeyWithBLOBs(UserWithBLOBs record);
+    int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    User selectUserRecordByUserName(String userName);
+
 }

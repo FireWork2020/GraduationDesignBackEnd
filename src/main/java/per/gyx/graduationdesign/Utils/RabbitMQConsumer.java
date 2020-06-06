@@ -23,6 +23,7 @@ public class RabbitMQConsumer {
     @RabbitListener(queues = "task")
     public void receive(Task task){
         doTask.storeCollectHistory(task);
+        doTask.addGarbageToCan(task.getGarbagecan());
         String imgName = task.getCollectcode();
         redisUtils.deleteCodeFromList(task.getCollectcode());
         QRCodeGenerator.deleteQRCodePic(task.getCollectcode());

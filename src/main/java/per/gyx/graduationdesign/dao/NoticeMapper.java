@@ -12,4 +12,6 @@ public interface NoticeMapper {
     List<Notice> selectByExample(NoticeExample example);
 
     List<Notice> selectNotice();
+
+    void insertNotice(Notice notice);
 }

@@ -15,7 +15,11 @@
     from Activity
     where activityNum = #{activitynum,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectInfo" resultType="per.gyx.graduationdesign.entity.Activity">
+      select *
+      from Activity
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from Activity
     where activityNum = #{activitynum,jdbcType=INTEGER}
   </delete>

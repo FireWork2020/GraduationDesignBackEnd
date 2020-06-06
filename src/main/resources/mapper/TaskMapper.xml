@@ -17,15 +17,25 @@
     from TaskHistory
     where CollectCode = #{collectcode,jdbcType=VARCHAR}
   </select>
+    <select id="selectByUserName" resultType="per.gyx.graduationdesign.entity.Task">
+      select *
+      from TaskHistory
+      where userName=#{userName,jdbcType=VARCHAR}
+    </select>
+  <select id="selectUnCheckedByUserName" resultType="java.lang.Object"></select>
+  <select id="selectAll" resultType="per.gyx.graduationdesign.entity.Task">
+    select *
+    from TaskHistory
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from TaskHistory
     where CollectCode = #{collectcode,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="per.gyx.graduationdesign.entity.Task">
     insert into TaskHistory (CollectCode, UserName, Type, 
-      Date, Checked)
+      Date, Checked,GarbageCan)
     values (#{collectcode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{date,jdbcType=VARCHAR}, #{checked,jdbcType=INTEGER})
+      #{date,jdbcType=VARCHAR}, #{checked,jdbcType=INTEGER},#{GarbageCan,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="per.gyx.graduationdesign.entity.Task">
     insert into TaskHistory

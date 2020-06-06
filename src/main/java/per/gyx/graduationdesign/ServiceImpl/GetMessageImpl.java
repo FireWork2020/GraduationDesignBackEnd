@@ -3,12 +3,8 @@ package per.gyx.graduationdesign.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import per.gyx.graduationdesign.Service.GetMessage;
-import per.gyx.graduationdesign.dao.NoticeMapper;
-import per.gyx.graduationdesign.dao.QuestionMapper;
-import per.gyx.graduationdesign.dao.TaskMapper;
-import per.gyx.graduationdesign.entity.Notice;
-import per.gyx.graduationdesign.entity.Question;
-import per.gyx.graduationdesign.entity.Task;
+import per.gyx.graduationdesign.dao.*;
+import per.gyx.graduationdesign.entity.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +18,12 @@ public class GetMessageImpl implements GetMessage {
     QuestionMapper questionMapper;
     @Autowired
     NoticeMapper noticeMapper;
+    @Autowired
+    UserMapper userMapper;
+    @Autowired
+    ActivityMapper activityMapper;
+
+
 
     @Override
     public List<Notice> getNotice() {
@@ -36,6 +38,25 @@ public class GetMessageImpl implements GetMessage {
     @Override
     public List<Task> getHistoryByUserName(String userName) {
         return taskMapper.selectByUserName(userName);
+    }
+    @Override
+    public List<Task> getAllCollectHistory() {
+        return taskMapper.selectAll();
+    }
+
+    @Override
+    public List<Question> getQuestion() {
+        return questionMapper.selectAll();
+    }
+
+    @Override
+    public User getUserRecordByUserName(String userName) {
+        return userMapper.selectUserRecordByUserName(userName);
+    }
+
+    @Override
+    public List<Activity> getVolunteerInfo() {
+        return activityMapper.selectInfo();
     }
 
     @Override

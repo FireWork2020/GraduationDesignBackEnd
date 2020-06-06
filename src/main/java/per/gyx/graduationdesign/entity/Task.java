@@ -1,30 +1,19 @@
 package per.gyx.graduationdesign.entity;
 
 public class Task {
-    private String collectcode;
-
     private String username;
-
     private Integer type;
-
+    private String collectcode;
     private String date;
-
     private Integer checked;
-
-    public String getCollectcode() {
-        return collectcode;
-    }
-
-    public void setCollectcode(String collectcode) {
-        this.collectcode = collectcode == null ? null : collectcode.trim();
-    }
+    private Integer garbagecan;
 
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+        this.username = username;
     }
 
     public Integer getType() {
@@ -35,12 +24,20 @@ public class Task {
         this.type = type;
     }
 
+    public String getCollectcode() {
+        return collectcode;
+    }
+
+    public void setCollectcode(String collectcode) {
+        this.collectcode = collectcode;
+    }
+
     public String getDate() {
         return date;
     }
 
     public void setDate(String date) {
-        this.date = date == null ? null : date.trim();
+        this.date = date;
     }
 
     public Integer getChecked() {
@@ -49,5 +46,13 @@ public class Task {
 
     public void setChecked(Integer checked) {
         this.checked = checked;
+    }
+
+    public Integer getGarbagecan() {
+        return garbagecan;
+    }
+
+    public void setGarbagecan(Integer garbagecan) {
+        this.garbagecan = garbagecan;
     }
 }

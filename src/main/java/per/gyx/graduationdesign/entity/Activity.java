@@ -7,6 +7,16 @@ public class Activity {
 
     private String msg;
 
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public Integer getActivitynum() {
         return activitynum;
     }
