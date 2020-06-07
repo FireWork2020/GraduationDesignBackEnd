@@ -16,7 +16,11 @@
     from GarbageCan
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectCans" resultType="per.gyx.graduationdesign.entity.GarbageCan">
+      select *
+      from GarbageCan
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from GarbageCan
     where id = #{id,jdbcType=INTEGER}
   </delete>

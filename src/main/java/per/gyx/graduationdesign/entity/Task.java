@@ -1,12 +1,13 @@
 package per.gyx.graduationdesign.entity;
 
-public class Task {
+public class Task implements java.io.Serializable{
     private String username;
     private Integer type;
     private String collectcode;
     private String date;
     private Integer checked;
     private Integer garbagecan;
+
 
     public String getUsername() {
         return username;

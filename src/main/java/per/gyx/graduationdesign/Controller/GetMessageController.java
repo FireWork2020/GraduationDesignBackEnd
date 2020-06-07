@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import per.gyx.graduationdesign.Service.GetMessage;
 import per.gyx.graduationdesign.Utils.CodeGenerator;
 import per.gyx.graduationdesign.Utils.RedisUtils;
+import per.gyx.graduationdesign.dao.GarbageCanMapper;
 import per.gyx.graduationdesign.entity.*;
 
 import java.util.List;
@@ -18,6 +19,19 @@ public class GetMessageController {
     @Autowired
     private GetMessage getMessage;
 
+
+    @GetMapping("/getCans")
+    @ResponseBody
+    public List<GarbageCan> getCans(){
+        return getMessage.getCans();
+    }
+
+
+    @GetMapping("/userInfo")
+    @ResponseBody
+    public List<User> getUserInfo(){
+        return getMessage.getUserInfo();
+    }
     @GetMapping("/allCollectHistory")
     @ResponseBody
     public List<Task> getAllCollectHistory(){

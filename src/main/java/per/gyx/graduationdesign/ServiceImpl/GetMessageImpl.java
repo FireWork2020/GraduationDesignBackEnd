@@ -22,8 +22,19 @@ public class GetMessageImpl implements GetMessage {
     UserMapper userMapper;
     @Autowired
     ActivityMapper activityMapper;
+    @Autowired
+    GarbageCanMapper garbageCanMapper;
 
 
+    @Override
+    public List<GarbageCan> getCans() {
+        return garbageCanMapper.selectCans();
+    }
+
+    @Override
+    public List<User> getUserInfo() {
+        return userMapper.selectUserInfo();
+    }
 
     @Override
     public List<Notice> getNotice() {

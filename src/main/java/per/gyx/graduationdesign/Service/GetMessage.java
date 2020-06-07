@@ -13,4 +13,6 @@ public interface GetMessage {
     User getUserRecordByUserName(String userName);
     List<Activity> getVolunteerInfo();
     List<Task> getAllCollectHistory();
+    List<User> getUserInfo();
+    List<GarbageCan> getCans();
 }

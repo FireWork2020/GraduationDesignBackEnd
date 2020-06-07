@@ -26,6 +26,10 @@
       from UserRecord
       where userName= #{userName,jdbcType=VARCHAR}
     </select>
+    <select id="selectUserInfo" resultType="per.gyx.graduationdesign.entity.User">
+      select *
+      from UserRecord
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from UserRecord
     where userName = #{username,jdbcType=VARCHAR}

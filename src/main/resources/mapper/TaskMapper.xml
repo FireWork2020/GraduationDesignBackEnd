@@ -35,7 +35,7 @@
     insert into TaskHistory (CollectCode, UserName, Type, 
       Date, Checked,GarbageCan)
     values (#{collectcode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{date,jdbcType=VARCHAR}, #{checked,jdbcType=INTEGER},#{GarbageCan,jdbcType=INTEGER})
+      #{date,jdbcType=VARCHAR}, #{checked,jdbcType=INTEGER},#{garbagecan,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="per.gyx.graduationdesign.entity.Task">
     insert into TaskHistory

@@ -2,6 +2,8 @@ package per.gyx.graduationdesign.dao;
 
 import per.gyx.graduationdesign.entity.User;
 
+import java.util.List;
+
 public interface UserMapper {
     int deleteByPrimaryKey(String username);
 
@@ -16,5 +18,7 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     User selectUserRecordByUserName(String userName);
+
+    List<User> selectUserInfo();
 
 }

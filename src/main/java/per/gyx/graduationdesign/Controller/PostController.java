@@ -31,36 +31,37 @@ public class PostController {
 
     @PostMapping("/applyActivity")
     @ResponseBody
-    public void applyActivity(@RequestParam("userName")String userName,@RequestParam("activityNum")Integer activityNum){
+    public void applyActivity(@RequestBody HashMap<String,Object> params){
         ActivityRecord activityRecord = new ActivityRecord();
-        activityRecord.setUsername(userName);
-        activityRecord.setActivitynum(activityNum);
+        activityRecord.setUsername((String)params.get("userName"));
+        activityRecord.setActivitynum((Integer)params.get("activityNum"));
         postMessage.applyActivity(activityRecord);
     }
 
     @PostMapping("/ansQues")
     @ResponseBody
-    public void ansQues(@RequestParam("id")Integer id,@RequestParam("ans")String ans){
-        postMessage.ansQues(id,ans);
+    public void ansQues(@RequestBody HashMap<String,Object> params){
+        System.out.println(params.toString());
+        postMessage.ansQues(Integer.parseInt((String)params.get("id")),(String)params.get("ans"));
     }
 
     @PostMapping("/releaseNotice")
     @ResponseBody
-    public void releaseNotice(@RequestParam("topic")String topic,@RequestParam("msg")String msg){
+    public void releaseNotice(@RequestBody HashMap<String,Object> params){
         Notice notice = new Notice();
-        notice.setTopic(topic);
-        notice.setMsg((msg));
+        notice.setTopic((String)params.get("topic"));
+        notice.setMsg((String)params.get("msg"));
         postMessage.releaseNotice(notice);
     }
 
     @RequestMapping("/releaseActivity")
     @ResponseBody
-    public void releaseActivity(@RequestParam("topic")String topic,@RequestParam("msg")String msg){
+    public void releaseActivity(@RequestBody HashMap<String,Object> params){
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
         Activity activity = new Activity();
-        activity.setTopic(topic);
-        activity.setMsg(msg);
+        activity.setTopic((String)params.get("topic"));
+        activity.setMsg((String)params.get("msg"));
         activity.setDate(simpleDateFormat.format(date));
         postMessage.releaseActivity(activity);
     }

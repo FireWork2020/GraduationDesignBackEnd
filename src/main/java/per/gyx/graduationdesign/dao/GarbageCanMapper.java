@@ -2,6 +2,8 @@ package per.gyx.graduationdesign.dao;
 
 import per.gyx.graduationdesign.entity.GarbageCan;
 
+import java.util.List;
+
 public interface GarbageCanMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -16,4 +18,6 @@ public interface GarbageCanMapper {
     int updateByPrimaryKey(GarbageCan record);
 
     void updateStateByCanID(Integer id);
+
+    List<GarbageCan> selectCans();
 }
