@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import per.gyx.graduationdesign.Service.GetMessage;
 import per.gyx.graduationdesign.Utils.CodeGenerator;
+import per.gyx.graduationdesign.Utils.Filter;
 import per.gyx.graduationdesign.Utils.RedisUtils;
 import per.gyx.graduationdesign.dao.GarbageCanMapper;
 import per.gyx.graduationdesign.entity.*;
@@ -18,6 +19,7 @@ public class GetMessageController {
     private RedisUtils redisUtils;
     @Autowired
     private GetMessage getMessage;
+
 
 
     @GetMapping("/getCans")

@@ -147,4 +147,48 @@
       phone = #{phone,jdbcType=VARCHAR}
     where userName = #{username,jdbcType=VARCHAR}
   </update>
+  <update id="updateScore">
+    update UserRecord
+    <set>
+      <if test="type == 1">
+            type1 = type1 + 1
+      </if>
+      <if test="type == 2">
+        type2 = type2 + 1
+      </if>
+      <if test="type == 3">
+        type3 = type3 + 1
+      </if>
+      <if test="type == 4">
+        type4 = type4 + 1
+      </if>
+      score = #{type,jdbcType=INTEGER} + score
+    </set>
+    where userName = #{username,jdbcType=VARCHAR}
+  </update>
+  <update id="updateToZero">
+    update UserRecord
+    set score = 0,type1 = 0,type2 = 0,type3 = 0,type4 = 0
+    where username = #{userName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateType1">
+    update UserRecord
+    set score = score + 1
+    where username=#{userName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateType2">
+    update UserRecord
+    set score = score + 2
+    where username=#{userName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateType3">
+    update UserRecord
+    set score = score + 3
+    where username=#{userName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateType4">
+    update UserRecord
+    set score = score + 4
+    where username=#{userName,jdbcType=VARCHAR}
+  </update>
 </mapper>

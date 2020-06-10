@@ -22,4 +22,5 @@ public interface TaskMapper {
 
     Object selectUnCheckedByUserName(String userName);
 
+    int updateChecked(String userName);
 }

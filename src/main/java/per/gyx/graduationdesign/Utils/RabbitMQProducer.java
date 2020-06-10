@@ -10,12 +10,6 @@ public class RabbitMQProducer {
 
     @Autowired
     private AmqpTemplate rabbitTemplate;
-    @Autowired
-    private RedisUtils redisUtils;
-
-    public void testTaskSend(Task task){
-        rabbitTemplate.convertAndSend("test",task);
-    }
 
     public void taskSend(Task task) {
         rabbitTemplate.convertAndSend("task",task);

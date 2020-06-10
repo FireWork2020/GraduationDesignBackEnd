@@ -11,4 +11,5 @@ public interface PostMessage {
     void ansQues(Integer id,String ans);
     void releaseNotice(Notice notice);
     void releaseActivity(Activity activity);
+    void toZero(String userName);
 }

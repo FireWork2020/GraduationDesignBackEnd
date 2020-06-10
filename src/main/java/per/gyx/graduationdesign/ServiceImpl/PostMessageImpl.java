@@ -3,10 +3,7 @@ package per.gyx.graduationdesign.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import per.gyx.graduationdesign.Service.PostMessage;
-import per.gyx.graduationdesign.dao.ActivityMapper;
-import per.gyx.graduationdesign.dao.ActivityRecordMapper;
-import per.gyx.graduationdesign.dao.NoticeMapper;
-import per.gyx.graduationdesign.dao.QuestionMapper;
+import per.gyx.graduationdesign.dao.*;
 import per.gyx.graduationdesign.entity.Activity;
 import per.gyx.graduationdesign.entity.ActivityRecord;
 import per.gyx.graduationdesign.entity.Notice;
@@ -26,6 +23,11 @@ public class PostMessageImpl implements PostMessage {
 
     @Autowired
     private NoticeMapper noticeMapper;
+    @Autowired
+    private TaskMapper taskMapper;
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
     public void postQuestion(Question question) {
         questionMapper.insert(question);
@@ -50,5 +52,11 @@ public class PostMessageImpl implements PostMessage {
     @Override
     public void releaseActivity(Activity activity) {
         activityMapper.insert(activity);
+    }
+
+    @Override
+    public void toZero(String userName) {
+        taskMapper.updateChecked(userName);
+        userMapper.updateToZero(userName);
     }
 }

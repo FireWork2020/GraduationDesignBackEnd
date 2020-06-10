@@ -20,4 +20,6 @@ public interface GarbageCanMapper {
     void updateStateByCanID(Integer id);
 
     List<GarbageCan> selectCans();
+
+
 }

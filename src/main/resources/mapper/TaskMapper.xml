@@ -100,4 +100,9 @@
       Checked = #{checked,jdbcType=INTEGER}
     where CollectCode = #{collectcode,jdbcType=VARCHAR}
   </update>
+  <update id="updateChecked">
+    update TaskHistory
+    set checked = 1
+    where username=#{userName,jdbcType=VARCHAR}
+  </update>
 </mapper>

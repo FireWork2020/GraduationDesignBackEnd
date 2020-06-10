@@ -3,6 +3,7 @@ package per.gyx.graduationdesign.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import per.gyx.graduationdesign.Service.PostMessage;
+import per.gyx.graduationdesign.Utils.Filter;
 import per.gyx.graduationdesign.entity.Activity;
 import per.gyx.graduationdesign.entity.ActivityRecord;
 import per.gyx.graduationdesign.entity.Notice;
@@ -18,12 +19,40 @@ public class PostController {
 
     @Autowired
     private PostMessage postMessage;
+    @Autowired
+    private Filter filter;
 
+    @PostMapping("/login")
+    @ResponseBody
+    public void login(@RequestBody HashMap<String,Object> params){
+        String userName = (String)params.get("userName");
+        System.out.println(userName);
+        if(filter.putUser(userName)){
+            System.out.println(userName + "登录成功");
+        }
+        if (filter.containUser(userName)) {
+            System.out.println("存在:"+userName);
+        }
+    }
+    @PostMapping("/grateToZero")
+    @ResponseBody
+    public void grateToZero(@RequestBody HashMap<String,Object> params){
+        String userName = (String)params.get("userName");
+        if(!filter.containUser(userName)){
+            return;
+        }
+        System.out.println(userName);
+        postMessage.toZero(userName);
+    }
     @PostMapping("/helpCenter")
     @ResponseBody
     public void submitQuestion(@RequestBody HashMap<String,Object> hashMap){
+        String userName = (String)hashMap.get("userName");
+        if(!filter.containUser(userName)){
+            return;
+        }
         Question question = new Question();
-        question.setUsername((String)hashMap.get("userName"));
+        question.setUsername(userName);
         question.setTopic(((String)hashMap.get("topic")));
         question.setMsg((String)hashMap.get("msg"));
         postMessage.postQuestion(question);
@@ -32,8 +61,12 @@ public class PostController {
     @PostMapping("/applyActivity")
     @ResponseBody
     public void applyActivity(@RequestBody HashMap<String,Object> params){
+        String userName = (String)params.get("userName");
+        if(!filter.containUser(userName)){
+            return;
+        }
         ActivityRecord activityRecord = new ActivityRecord();
-        activityRecord.setUsername((String)params.get("userName"));
+        activityRecord.setUsername(userName);
         activityRecord.setActivitynum((Integer)params.get("activityNum"));
         postMessage.applyActivity(activityRecord);
     }
@@ -62,6 +95,7 @@ public class PostController {
         Activity activity = new Activity();
         activity.setTopic((String)params.get("topic"));
         activity.setMsg((String)params.get("msg"));
+        System.out.println(simpleDateFormat.format(date));
         activity.setDate(simpleDateFormat.format(date));
         postMessage.releaseActivity(activity);
     }
